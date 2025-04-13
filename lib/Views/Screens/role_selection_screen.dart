@@ -1,3 +1,5 @@
+import 'package:farmz/Views/Screens/authentiaciton/consumer_signup_screen.dart';
+import 'package:farmz/Views/Screens/authentiaciton/farmer_signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class RoleSelectionScreen extends StatelessWidget {
@@ -11,7 +13,7 @@ class RoleSelectionScreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                const SizedBox(height: 80),
+                const SizedBox(height: 120),
                 const Center(
                   child: Text(
                     "Hey there!",
@@ -32,6 +34,10 @@ class RoleSelectionScreen extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {
                           // Navigate to Farmer screen
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const FarmerSignupScreen();
+                          }));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green,
@@ -49,6 +55,9 @@ class RoleSelectionScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return  ConsumerSignupScreen();
+                          }));
                           // Navigate to Consumer screen
                         },
                         style: ElevatedButton.styleFrom(
@@ -74,20 +83,23 @@ class RoleSelectionScreen extends StatelessWidget {
             // Right side top illustration (e.g., sugarcane)
             Positioned(
               right: 10,
-              top: 180,
-              child: Image.asset(
-                'assets/images/sugarcane.jpg',
-                height: 100,
+              top: 280,
+              child: Opacity(
+                opacity: 0.8,
+                child: Image.asset(
+                  'assets/images/sugarcane.png',
+                  height: 120,
+                ),
               ),
             ),
 
             // Bottom left cart image
             Positioned(
-              left: 10,
               bottom: 20,
               child: Image.asset(
-                'assets/images/cart.jpg',
-                height: 80,
+                'assets/images/cart1.png',
+                height: 300,
+                width: 350,
               ),
             ),
           ],
