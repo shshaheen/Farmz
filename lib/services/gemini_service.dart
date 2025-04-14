@@ -1,6 +1,6 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 // import '../secrets.dart';
-import 'package:farmz/views/Screens/Farmer/secrets.dart';
+import 'package:farmz/views/screens/Farmer/secrets.dart';
 class GeminiService {
   static String apiKey =  GEMINI_SERVICE_KEY ; // Replace with your key
 
