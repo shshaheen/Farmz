@@ -3,6 +3,7 @@ import 'package:farmz/Views/Screens/Farmer/market_demand.dart';
 import 'package:farmz/Views/Screens/Farmer/upload_products.dart';
 import 'package:farmz/Views/Screens/Farmer/village_community.dart';
 import 'package:flutter/material.dart';
+import 'chat_screen.dart';
 
 class FarmerHomePage extends StatefulWidget {
   const FarmerHomePage({super.key});
@@ -38,6 +39,28 @@ class _FarmerHomePageState extends State<FarmerHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Hello Farmer!"),
+
+         actions: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ChatScreen()));
+                 
+                  // Handle profile tap
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/niya.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ],
         // centerTitle: true,
       ),
       bottomNavigationBar: BottomNavigationBar(
