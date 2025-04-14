@@ -1,4 +1,5 @@
 import 'package:farmz/Views/Screens/authentiaciton/farmer_login_screen.dart';
+import 'package:farmz/controllers/farmer_auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,30 +13,31 @@ class FarmerSignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<FarmerSignupScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // final AuthController _authController = AuthController();
+  final FarmerAuthController _authController = FarmerAuthController();
 
   late String email;
   late String username;
+  late String village;
   late String password;
   bool isLoading = false;
-  // SignupUser() async {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   await _authController
-  //       .signUpUsers(
-  //           context: context,
-  //           username: username,
-  //           email: email,
-  //           password: password)
-  //       .whenComplete(() {
-  //       // _formKey.currentState!.reset();
-  //     setState(() {
-
-  //       isLoading = false;
-  //     });
-  //   });
-  // }
+  signupUser() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _authController
+        .signUpUsers(
+            context: context,
+            username: username,
+            email: email,
+            village: village,
+            password: password)
+        .whenComplete(() {
+      // _formKey.currentState!.reset();
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +113,10 @@ class _SignupScreenState extends State<FarmerSignupScreen> {
                           letterSpacing: 0.1,
                         ),
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(Icons.person,
-                          
-                          )
-                        ),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.person,
+                            )),
                       ),
                     ),
                     const SizedBox(
@@ -155,9 +156,8 @@ class _SignupScreenState extends State<FarmerSignupScreen> {
                           letterSpacing: 0.1,
                         ),
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(Icons.email)
-                        ),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.email)),
                       ),
                     ),
                     const SizedBox(
@@ -166,33 +166,32 @@ class _SignupScreenState extends State<FarmerSignupScreen> {
 
                     TextFormField(
                       onChanged: (value) {
-                        password = value;
+                        village = value;
                       },
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Enter Village';
-                        }  else {
+                        } else {
                           return null;
                         }
                       },
                       decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          labelText: 'enter your village',
-                          labelStyle: GoogleFonts.getFont(
-                            'Nunito Sans',
-                            fontSize: 14,
-                            letterSpacing: 0.1,
-                          ),
-                          prefixIcon: Padding(
+                        fillColor: Colors.white,
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        labelText: 'enter your village',
+                        labelStyle: GoogleFonts.getFont(
+                          'Nunito Sans',
+                          fontSize: 14,
+                          letterSpacing: 0.1,
+                        ),
+                        prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.location_on)
-                          ),
+                            child: Icon(Icons.location_on)),
                       ),
                     ),
                     SizedBox(
@@ -227,9 +226,8 @@ class _SignupScreenState extends State<FarmerSignupScreen> {
                             letterSpacing: 0.1,
                           ),
                           prefixIcon: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.lock)
-                          ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(Icons.lock)),
                           suffixIcon: Icon(Icons.visibility)),
                     ),
                     SizedBox(
@@ -238,8 +236,8 @@ class _SignupScreenState extends State<FarmerSignupScreen> {
                     InkWell(
                       onTap: () async {
                         if (_formKey.currentState!.validate()) {
-                          // SignupUser();
-                          print("Correct");
+                          signupUser();
+                          // print("Correct");
                         } else {
                           // print("incorrect");
                         }
@@ -272,7 +270,9 @@ class _SignupScreenState extends State<FarmerSignupScreen> {
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                             width: 12,
-                                            color: Theme.of(context).colorScheme.primary),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
                                         borderRadius:
                                             BorderRadius.circular(30)),
                                   ),
@@ -290,7 +290,8 @@ class _SignupScreenState extends State<FarmerSignupScreen> {
                                     border: Border.all(
                                       width: 3,
                                     ),
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                     borderRadius: BorderRadius.circular(5),
                                   ),
                                 ),
