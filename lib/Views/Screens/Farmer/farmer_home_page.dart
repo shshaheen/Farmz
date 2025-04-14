@@ -1,12 +1,60 @@
+import 'package:farmz/Views/Screens/Farmer/farm_tasks.dart';
+import 'package:farmz/Views/Screens/Farmer/market_demand.dart';
+import 'package:farmz/Views/Screens/Farmer/upload_products.dart';
+import 'package:farmz/Views/Screens/Farmer/village_community.dart';
 import 'package:flutter/material.dart';
 
-class FarmerHomePage extends StatelessWidget {
+class FarmerHomePage extends StatefulWidget {
   const FarmerHomePage({super.key});
+
+  @override
+  State<FarmerHomePage> createState() => _FarmerHomePageState();
+}
+
+class _FarmerHomePageState extends State<FarmerHomePage> {
+  int _selectedIndex = 0;
+
+  final List<String> _iconPaths = [
+    "assets/images/demand.png",
+    "assets/images/village_community.png",
+    "assets/images/crop_calender.png",
+    "assets/images/upload.png",
+  ];
+  final List<Widget> _pages = [
+    MarketDemand(),
+    VillageCommunity(),
+    FarmTasks(),
+    UploadProducts(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("I'm a Farmer"),),
+      
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        items: _iconPaths.map((path) {
+          int index = _iconPaths.indexOf(path);
+          return BottomNavigationBarItem(
+            icon: Image.asset(
+              path,
+              width: 30,
+              height: 30,
+              color: _selectedIndex == index ? Colors.green : Colors.grey,
+            ),
+            label: '', // no label like in the image
+          );
+        }).toList(),
+      ),
+      body: _pages[_selectedIndex]
     );
   }
 }
