@@ -96,10 +96,12 @@ class RoleSelectionScreen extends StatelessWidget {
             // Bottom left cart image
             Positioned(
               bottom: 20,
-              child: Image.asset(
-                'assets/images/cart1.png',
-                height: 300,
-                width: 350,
+              child: IgnorePointer(
+                child: Image.asset(
+                  'assets/images/cart1.png',
+                  height: 300,
+                  width: 350,
+                ),
               ),
             ),
           ],
