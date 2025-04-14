@@ -1,4 +1,5 @@
 import 'package:farmz/Views/Screens/authentiaciton/farmer_signup_screen.dart';
+import 'package:farmz/controllers/consumer_auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,7 +13,7 @@ class ConsumerLoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<ConsumerLoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // final AuthController _authController = AuthController();
+  final ConsumerAuthController _authController = ConsumerAuthController();
 
   late String email;
 
@@ -20,19 +21,19 @@ class _LoginScreenState extends State<ConsumerLoginScreen> {
 
   bool isLoading = false;
 
-  // loginUser() async {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   await _authController
-  //       .signInUsers(context: context, email: email, password: password)
-  //       .whenComplete(() {
-  //     // _formKey.currentState!.reset();
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //   });
-  // }
+  loginUser() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _authController
+        .signInUsers(context: context, email: email, password: password)
+        .whenComplete(() {
+      _formKey.currentState!.reset();
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +155,7 @@ class _LoginScreenState extends State<ConsumerLoginScreen> {
                     InkWell(
                       onTap: () async {
                         if (_formKey.currentState!.validate()) {
-                          // loginUser();
+                          loginUser();
                           // print("Success");
                         } else {
                           // print('failed');

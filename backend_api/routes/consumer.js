@@ -42,7 +42,7 @@ try {
     const {password, ...userWithoutPassword} = user._doc;
     
     // send the response
-    res.json({token,user: userWithoutPassword});
+    res.json({token,consumer: userWithoutPassword});
 } catch (error) {
     res.status(500).json({error: error.message});
 }

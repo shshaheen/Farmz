@@ -1,4 +1,5 @@
 import 'package:farmz/Views/Screens/authentiaciton/consumer_login_screen.dart';
+import 'package:farmz/controllers/consumer_auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,30 +13,32 @@ class ConsumerSignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<ConsumerSignupScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // final AuthController _authController = AuthController();
+  final ConsumerAuthController _authController = ConsumerAuthController();
 
   late String email;
   late String username;
   late String password;
+  late String village;
   bool isLoading = false;
-  // SignupUser() async {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   await _authController
-  //       .signUpUsers(
-  //           context: context,
-  //           username: username,
-  //           email: email,
-  //           password: password)
-  //       .whenComplete(() {
-  //       // _formKey.currentState!.reset();
-  //     setState(() {
+  signupUser() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _authController
+        .signUpUsers(
+            context: context,
+            username: username,
+            email: email,
+            village: village,
+            password: password)
+        .whenComplete(() {
+        _formKey.currentState!.reset();
+      setState(() {
 
-  //       isLoading = false;
-  //     });
-  //   });
-  // }
+        isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +170,7 @@ class _SignupScreenState extends State<ConsumerSignupScreen> {
 
                     TextFormField(
                       onChanged: (value) {
-                        password = value;
+                        village = value;
                       },
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -239,7 +242,7 @@ class _SignupScreenState extends State<ConsumerSignupScreen> {
                     InkWell(
                       onTap: () async {
                         if (_formKey.currentState!.validate()) {
-                          // SignupUser();
+                          signupUser();
                           // print("Correct");
                         } else {
                           // print("incorrect");

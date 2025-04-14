@@ -9,7 +9,7 @@ import 'dart:convert';
 import '../models/farmer_auth.dart';
 import 'package:http/http.dart' as http;
 import '../global_variables.dart';
-
+ 
 final providerContainer = ProviderContainer();
 
 class FarmerAuthController {
