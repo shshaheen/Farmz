@@ -31,6 +31,23 @@ class _MarketDemandState extends State<MarketDemand> {
     }
   }
 
+Future<List<dynamic>> getMarketDemandData() async {
+  final apiUrl =
+    "https://api.data.gov.in/resource/39d93525-6f3d-45a8-b80e-fa62277a20e7"
+    "?api-key=$marketDemandAPIKey&format=json&limit=10";
+
+  final response = await http.get(Uri.parse(apiUrl));
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    return data['records'];
+  } else {
+    throw Exception("Failed to load market demand data");
+  }
+}
+
+
+
   IconData getWeatherIcon(String data) {
     return data == 'Clouds' || data == 'Rain'
         ? Icons.cloud
@@ -124,6 +141,65 @@ class _MarketDemandState extends State<MarketDemand> {
                           ),
                         ),
                         const SizedBox(height: 20),
+
+                       FutureBuilder(
+                        future: getMarketDemandData(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return const Center(child: CircularProgressIndicator());
+                          }
+
+                          if (snapshot.hasError) {
+                            return Center(child: Text(snapshot.error.toString()));
+                          }
+
+                          final records = snapshot.data as List<dynamic>;
+
+                          return Card(
+                            margin: const EdgeInsets.all(12),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text("📊 Market Demand Index",
+                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 10),
+                                  ...records.map((record) {
+                                    final commodity = record['commodity'];
+                                    final demand = int.tryParse(record['_2025_26___demand'].toString()) ?? 0;
+                                    final supply = int.tryParse(record['_2025_26___supply'].toString()) ?? 0;
+                                    final price = (100 + (demand - supply)).toString(); // Sample price logic
+
+                                    final trend = demand > supply
+                                        ? 'Rising'
+                                        : demand < supply
+                                            ? 'Falling'
+                                            : 'Stable';
+
+                                    final color = trend == 'Rising'
+                                        ? Colors.green
+                                        : trend == 'Falling'
+                                            ? Colors.red
+                                            : Colors.grey;
+
+                                    return ListTile(
+                                      contentPadding: EdgeInsets.zero,
+                                      title: Text(commodity,
+                                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                                      subtitle: Text("Trend: $trend", style: TextStyle(color: color)),
+                                      trailing: Text("₹$price /kg",
+                                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                                    );
+                                  }).toList(),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+
                       ],
                     ),
                   );
