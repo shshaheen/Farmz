@@ -36,7 +36,10 @@ class _FarmerHomePageState extends State<FarmerHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      appBar: AppBar(
+        title: const Text("Hello Farmer!"),
+        // centerTitle: true,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
