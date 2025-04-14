@@ -21,12 +21,25 @@ class _FarmerHomePageState extends State<FarmerHomePage> {
     "assets/images/crop_calender.png",
     "assets/images/upload.png",
   ];
-  final List<Widget> _pages = [
-    MarketDemand(),
-    VillageCommunity(),
-    FarmTasks(),
-    UploadProducts(),
-  ];
+final List<Map<String, dynamic>> _pages = [
+  {
+    'widget': MarketDemand(),
+    'title': 'Market Demand',
+  },
+  {
+    'widget': VillageCommunity(),
+    'title': 'Village Community',
+  },
+  {
+    'widget': FarmTasks(),
+    'title': 'Farmer Calendar',
+  },
+  {
+    'widget': UploadProducts(),
+    'title': 'Upload Products',
+  },
+];
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -38,31 +51,30 @@ class _FarmerHomePageState extends State<FarmerHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Hello Farmer!"),
-
-         actions: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ChatScreen()));
-                 
-                  // Handle profile tap
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: ClipOval(
-                    child: Image.asset(
-                      'assets/images/niya.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+        title: Text(_pages[_selectedIndex]['title']),
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatScreen()),
+              );
+            },
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/niya.png',
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ],
-        // centerTitle: true,
+            ),
+          ),
+        ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -80,7 +92,8 @@ class _FarmerHomePageState extends State<FarmerHomePage> {
           );
         }).toList(),
       ),
-      body: _pages[_selectedIndex]
+      body: _pages[_selectedIndex]['widget'],
+
     );
   }
 }

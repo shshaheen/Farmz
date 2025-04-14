@@ -71,7 +71,6 @@ class _FarmTasksState extends State<FarmTasks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Farmer Calendar")),
       body: Column(
         children: [
           TableCalendar(
