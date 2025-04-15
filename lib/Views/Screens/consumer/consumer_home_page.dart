@@ -28,7 +28,7 @@ class _FarmerHomePageState extends State<ConsumerHomePage> {
 final List<Map<String, dynamic>> _pages = [
   {
     'widget': ProductsScreen(),
-    'title': 'Market Demand',
+    'title': 'Market Place',
   },
   {
     'widget': VillageCommunity(),
@@ -36,11 +36,11 @@ final List<Map<String, dynamic>> _pages = [
   },
   {
     'widget': CategoryScreen(),
-    'title': 'Farmer Calendar',
+    'title': 'Categories',
   },
   {
     'widget': CartScreen(),
-    'title': 'Upload Products',
+    'title': 'Cart',
   },
 ];
 

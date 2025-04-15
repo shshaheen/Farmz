@@ -49,7 +49,7 @@ class _UploadProductsState extends ConsumerState<UploadProducts> {
       await _productController
           .uploadProduct(
         productName: _productNameController.text.trim(),
-        productPrice: double.parse(_productPriceController.text),
+        productPrice: int.parse(_productPriceController.text),
         location: _locationController.text.trim(),
         speciality: _selectedSpeciality!,
         farmerId: formerId,
@@ -132,7 +132,7 @@ class _UploadProductsState extends ConsumerState<UploadProducts> {
                           borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: _submitForm,
-                    child: isLoading?const Center(child: CircularProgressIndicator(color: Colors.black,),) :
+                    child: isLoading? const Center(child: CircularProgressIndicator(color: Colors.black,),) :
                     const Text("Submit", style: TextStyle(fontSize: 18)),
                   ),
                 ],

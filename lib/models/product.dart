@@ -4,7 +4,7 @@ import 'dart:convert';
 class Product {
   final String id;
   final String productName;
-  final double productPrice; 
+  final int productPrice; 
   final String location; 
   final String speciality;
   final String farmerId;
