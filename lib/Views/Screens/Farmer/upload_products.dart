@@ -3,7 +3,7 @@ import 'package:farmz/controllers/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:farmz/controllers/farmer_auth_controller.dart';
+// import 'package:farmz/controllers/farmer_auth_controller.dart';
 import 'package:farmz/providers/farmer.dart';
 
 class UploadProducts extends ConsumerStatefulWidget {
@@ -48,9 +48,9 @@ class _UploadProductsState extends ConsumerState<UploadProducts> {
       });
       await _productController
           .uploadProduct(
-        productName: _productNameController.text,
+        productName: _productNameController.text.trim(),
         productPrice: double.parse(_productPriceController.text),
-        location: _locationController.text,
+        location: _locationController.text.trim(),
         speciality: _selectedSpeciality!,
         farmerId: formerId,
         pickedImage: _imageFile,
