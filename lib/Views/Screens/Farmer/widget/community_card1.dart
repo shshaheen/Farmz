@@ -95,7 +95,9 @@ void _joinCommunity() async {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
+                      overflow: TextOverflow.ellipsis,
                       label,
+
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

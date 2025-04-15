@@ -9,43 +9,45 @@ class VillageCommunity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: 520,
-            child: PageView(
-              scrollDirection: Axis.horizontal,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 520,
+              child: PageView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  CommunityCard1(),
+                  CommunityCard2(),
+                  CommunityCard3(),
+                ],
+                ),
+                
+            ),
+            Wrap(
+              spacing: 12,
               children: [
-                CommunityCard1(),
-                CommunityCard2(),
-                CommunityCard3(),
+                ActionChip(label: Text("View Members"), onPressed: () {}),
+                ActionChip(label: Text("Upcoming Events"), onPressed: () {}),
+                ActionChip(label: Text("Chat"), onPressed: () {}),
               ],
-              ),
-              
+            ),
+        Container(
+          padding: EdgeInsets.all(16),
+          margin: EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            color: Colors.green.shade50,
+            borderRadius: BorderRadius.circular(12),
           ),
-          Wrap(
-            spacing: 12,
-            children: [
-              ActionChip(label: Text("View Members"), onPressed: () {}),
-              ActionChip(label: Text("Upcoming Events"), onPressed: () {}),
-              ActionChip(label: Text("Chat"), onPressed: () {}),
-            ],
+          child: Text(
+            '"The ultimate goal of farming is not the growing of crops, but the cultivation of human beings." – Masanobu Fukuoka',
+            style: TextStyle(fontStyle: FontStyle.italic, color: Colors.green.shade900),
+            textAlign: TextAlign.center,
           ),
-          Container(
-  padding: EdgeInsets.all(16),
-  margin: EdgeInsets.symmetric(vertical: 12),
-  decoration: BoxDecoration(
-    color: Colors.green.shade50,
-    borderRadius: BorderRadius.circular(12),
-  ),
-  child: Text(
-    '"The ultimate goal of farming is not the growing of crops, but the cultivation of human beings." – Masanobu Fukuoka',
-    style: TextStyle(fontStyle: FontStyle.italic, color: Colors.green.shade900),
-    textAlign: TextAlign.center,
-  ),
-),
-
-        ],        
+        ),
+        
+          ],        
+        ),
       ),
 
 
