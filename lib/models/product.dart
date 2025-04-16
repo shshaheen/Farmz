@@ -4,14 +4,14 @@ import 'dart:convert';
 class Product {
   final String id;
   final String productName;
-  final int productPrice; 
-  final String location; 
+  final int productPrice;
+  final String location;
+  final String description;
   final String speciality;
   final String farmerId;
   final String image;
 
-  Product({required this.id, required this.productName, required this.productPrice, required this.location, required this.speciality, required this.farmerId, required this.image});
-
+  Product({required this.id, required this.productName, required this.productPrice, required this.location, required this.description, required this.speciality, required this.farmerId, required this.image});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -19,6 +19,7 @@ class Product {
       'productName': productName,
       'productPrice': productPrice,
       'location': location,
+      'description': description,
       'speciality': speciality,
       'farmerId': farmerId,
       'image': image,
@@ -31,6 +32,7 @@ class Product {
       productName: map['productName'] ?? '',
       productPrice: map['productPrice'] ?? 0,
       location: map['location'] ?? '',
+      description: map['description'] ?? '',
       speciality: map['speciality'] ?? '',
       farmerId: map['farmerId'] ?? '',
       image: map['image'] ?? '',

@@ -1,4 +1,5 @@
 import 'package:farmz/Views/Screens/Farmer/farmer_home_page.dart';
+import 'package:farmz/Views/Screens/welcome_page.dart';
 import 'package:farmz/providers/farmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -112,14 +113,14 @@ class FarmerAuthController {
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       // Clear the stored token and user from SharedPreference
-      await preferences.remove('auth_token');
-      await preferences.remove('user');
+      await preferences.remove('farmer_auth_token');
+      await preferences.remove('farmers');
       // Clear the user state
       providerContainer.read(farmerProvider.notifier).signOut();
       //Navigate the user back to the login screen
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => FarmerLoginScreen()),
+          MaterialPageRoute(builder: (context) => WelcomePage()),
           (route) => false);
       showSnackBar(context, 'Signout successfully');
     } catch (e) {

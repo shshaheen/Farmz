@@ -1,3 +1,4 @@
+import 'package:farmz/Views/Screens/authentiaciton/consumer_signup_screen.dart';
 import 'package:farmz/Views/Screens/authentiaciton/farmer_signup_screen.dart';
 import 'package:farmz/controllers/consumer_auth_controller.dart';
 import 'package:flutter/material.dart';
@@ -280,7 +281,7 @@ class _LoginScreenState extends State<ConsumerLoginScreen> {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => FarmerSignupScreen(),
+                                  builder: (context) => ConsumerSignupScreen(),
                                 ),
                                 (route) => false,
                                 );

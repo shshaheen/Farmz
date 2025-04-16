@@ -1,5 +1,6 @@
 import 'package:farmz/Views/Screens/authentiaciton/consumer_login_screen.dart';
 import 'package:farmz/Views/Screens/consumer/consumer_home_page.dart';
+import 'package:farmz/Views/Screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -114,7 +115,7 @@ class ConsumerAuthController {
 
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => ConsumerLoginScreen()),
+          MaterialPageRoute(builder: (context) => WelcomePage()),
           (route) => false);
       showSnackBar(context, 'Signed out successfully.');
     } catch (e) {

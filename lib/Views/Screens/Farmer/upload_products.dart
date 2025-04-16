@@ -23,7 +23,7 @@ class _UploadProductsState extends ConsumerState<UploadProducts> {
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _productPriceController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
-
+  final TextEditingController _descriptionController = TextEditingController();
   String? _selectedSpeciality;
 
   Future<void> _pickImage() async {
@@ -51,6 +51,7 @@ class _UploadProductsState extends ConsumerState<UploadProducts> {
         productName: _productNameController.text.trim(),
         productPrice: int.parse(_productPriceController.text),
         location: _locationController.text.trim(),
+        description: _descriptionController.text.trim(),
         speciality: _selectedSpeciality!,
         farmerId: formerId,
         pickedImage: _imageFile,
@@ -99,6 +100,26 @@ class _UploadProductsState extends ConsumerState<UploadProducts> {
                   _buildTextField(_productPriceController, "Product Price",
                       TextInputType.number),
                   _buildTextField(_locationController, "Location"),
+                  SizedBox(
+                      width: 400,
+                      child: TextFormField(
+                        controller: _descriptionController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Product Description";
+                          } else {
+                            return null;
+                          }
+                        },
+                        maxLines: 3,
+                        maxLength: 1000,
+                        decoration: InputDecoration(
+                            labelText: 'Enter Product Description',
+                            hintText: 'Enter Product Description',
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    SizedBox(height: 20),
                   _buildSpecialityRadioGroup(),
                   const SizedBox(height: 20),
                   GestureDetector(

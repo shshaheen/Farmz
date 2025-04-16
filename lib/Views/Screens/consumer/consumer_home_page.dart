@@ -3,6 +3,7 @@ import 'package:farmz/Views/Screens/Farmer/village_community.dart';
 import 'package:farmz/Views/Screens/consumer/cart_screen.dart';
 import 'package:farmz/Views/Screens/consumer/category_screen.dart';
 import 'package:farmz/Views/Screens/consumer/products_screen.dart';
+import 'package:farmz/controllers/consumer_auth_controller.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +16,7 @@ class ConsumerHomePage extends StatefulWidget {
 
 class _FarmerHomePageState extends State<ConsumerHomePage> {
   int _selectedIndex = 0;
-
+  final ConsumerAuthController _authController = ConsumerAuthController();
   final List<String> _iconPaths = [
     "assets/images/home.png",
     "assets/images/village_community.png",
@@ -52,7 +53,40 @@ final List<Map<String, dynamic>> _pages = [
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_pages[_selectedIndex]['title']),
+        title: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: Text('Confirm Logout'),
+                    content: Text('Are you sure you want to logout?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(ctx).pop(), // Cancel
+                        child: Text('No'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop(); // Close dialog
+                          _authController.signOutUsers(context: context);
+                          // 🔓 Perform logout action here
+                          // For example, FirebaseAuth.instance.signOut();
+                          // Then navigate to login screen
+                        },
+                        child: Text('Yes'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            SizedBox(width: 8),
+            Text(_pages[_selectedIndex]['title']),
+          ],
+        ),
         
       ),
 
