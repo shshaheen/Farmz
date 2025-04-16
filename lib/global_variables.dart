@@ -1,1 +1,1 @@
-String uri = "http://192.168.3.205:3000";
+String uri = "https://farmz-backend-jkc8.onrender.com";

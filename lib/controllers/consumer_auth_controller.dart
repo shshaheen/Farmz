@@ -26,7 +26,7 @@ class ConsumerAuthController {
         id: '',
         username: username,
         email: email,
-        village: '',
+        village: village,
         password: password,
         token: '', 
         

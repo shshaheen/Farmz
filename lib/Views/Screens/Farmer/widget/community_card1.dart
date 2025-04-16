@@ -86,7 +86,7 @@ void _joinCommunity() async {
             // Tags
             Row(
               children: [
-                for (var label in ["Organic", "Sustainable", "Vegetables"])
+                for (var label in ["Organic", "Sustainable", "Vegetable"])
                   Container(
                     margin: const EdgeInsets.only(right: 8),
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -190,7 +190,7 @@ void _joinCommunity() async {
           child: Text(initials, style: const TextStyle(color: Colors.white)),
         ),
         const SizedBox(width: 8),
-        Text(name, style: const TextStyle(fontSize: 16)),
+        Text(name, style: const TextStyle(fontSize: 14)),
         if (online)
           const Padding(
             padding: EdgeInsets.only(left: 4),

@@ -113,6 +113,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                   width: 100,
                                   child: Image.network(cartItem.image),
                                 ),
+                                SizedBox(width: 4,),
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment:
@@ -149,7 +150,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                             height: 40,
                                             width: 120,
                                             decoration: BoxDecoration(
-                                                color: Color(0xFF102DE1)),
+                                                color: Theme.of(context).colorScheme.primary),
                                             child: Row(
                                               children: [
                                                 IconButton(
@@ -255,10 +256,10 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                 },
                 child: Container(
                   width: 166,
-                  height: 71,
+                  height: 61,
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
-                    color: totalAmount == 0.0 ? Colors.grey : Color(0xFF1532E7),
+                    color: totalAmount == 0.0 ? Colors.grey : Theme.of(context).colorScheme.primary,
                   ),
                   child: Center(
                     child: Padding(

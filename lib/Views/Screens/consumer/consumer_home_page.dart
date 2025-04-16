@@ -1,11 +1,8 @@
-import 'package:farmz/Views/Screens/Farmer/farm_tasks.dart';
-import 'package:farmz/Views/Screens/Farmer/market_demand.dart';
-import 'package:farmz/Views/Screens/Farmer/upload_products.dart';
+
 import 'package:farmz/Views/Screens/Farmer/village_community.dart';
 import 'package:farmz/Views/Screens/consumer/cart_screen.dart';
 import 'package:farmz/Views/Screens/consumer/category_screen.dart';
 import 'package:farmz/Views/Screens/consumer/products_screen.dart';
-import 'package:farmz/models/product.dart';
 import 'package:flutter/material.dart';
 
 

@@ -189,7 +189,7 @@ class CommunityCard2 extends StatelessWidget {
           child: Text(initials, style: const TextStyle(color: Colors.white)),
         ),
         const SizedBox(width: 8),
-        Text(name, style: const TextStyle(fontSize: 16)),
+        Text(name, style: const TextStyle(fontSize: 14)),
         if (online)
           const Padding(
             padding: EdgeInsets.only(left: 4),

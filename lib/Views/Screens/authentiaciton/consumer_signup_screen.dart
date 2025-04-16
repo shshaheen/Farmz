@@ -15,30 +15,41 @@ class _SignupScreenState extends State<ConsumerSignupScreen> {
 
   final ConsumerAuthController _authController = ConsumerAuthController();
 
-  late String email;
-  late String username;
-  late String password;
-  late String village;
-  bool isLoading = false;
-  signupUser() async {
-    setState(() {
-      isLoading = true;
-    });
-    await _authController
-        .signUpUsers(
-            context: context,
-            username: username,
-            email: email,
-            village: village,
-            password: password)
-        .whenComplete(() {
-        _formKey.currentState!.reset();
-      setState(() {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController villageController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-        isLoading = false;
-      });
+  // late String email;
+  // late String username;
+  // late String password;
+  // late String village;
+  bool isLoading = false;
+signupUser() async {
+  setState(() {
+    isLoading = true;
+  });
+
+  await _authController
+      .signUpUsers(
+        context: context,
+        username: usernameController.text.trim(),
+        email: emailController.text.trim(),
+        village: villageController.text.trim(),
+        password: passwordController.text.trim(),
+      )
+      .whenComplete(() {
+    _formKey.currentState!.reset();
+    usernameController.clear();
+    emailController.clear();
+    villageController.clear();
+    passwordController.clear();
+
+    setState(() {
+      isLoading = false;
     });
-  }
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +102,8 @@ class _SignupScreenState extends State<ConsumerSignupScreen> {
                     ),
                     // const SizedBox(height: 20,),
                     TextFormField(
-                      onChanged: (value) {
-                        username = value;
-                      },
+                      controller: usernameController,
+                      
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter your full name';
@@ -134,9 +144,8 @@ class _SignupScreenState extends State<ConsumerSignupScreen> {
                       ),
                     ),
                     TextFormField(
-                      onChanged: (value) {
-                        email = value;
-                      },
+                      controller: emailController,
+                    
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Email cannot be empty';
@@ -167,11 +176,17 @@ class _SignupScreenState extends State<ConsumerSignupScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Village',
+                        style: GoogleFonts.getFont('Nunito Sans',
+                            fontWeight: FontWeight.w600, letterSpacing: 0.2),
+                      ),
+                    ),
                     TextFormField(
-                      onChanged: (value) {
-                        village = value;
-                      },
+                      controller: villageController,
+                     
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Enter Village';
@@ -202,11 +217,16 @@ class _SignupScreenState extends State<ConsumerSignupScreen> {
                     SizedBox(
                       height: 20,
                     ),
-
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Password',
+                        style: GoogleFonts.getFont('Nunito Sans',
+                            fontWeight: FontWeight.w600, letterSpacing: 0.2),
+                      ),
+                    ),
                     TextFormField(
-                      onChanged: (value) {
-                        password = value;
-                      },
+                      controller: passwordController,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Password cannot be empty';
