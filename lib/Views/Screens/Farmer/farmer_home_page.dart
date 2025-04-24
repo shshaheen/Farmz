@@ -64,7 +64,7 @@ final List<Map<String, dynamic>> _pages = [
               padding: EdgeInsets.all(8.0),
               child: ClipOval(
                 child: Image.asset(
-                  'assets/images/niya.png',
+                  'assets/images/GrowBot1.jpg',
                   width: 40,
                   height: 40,
                   fit: BoxFit.cover,
