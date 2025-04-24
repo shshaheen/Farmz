@@ -66,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
         title: Text(
-          "NIYA",
+          "GrowBot",
           style: GoogleFonts.ptSerifCaption(
             fontWeight: FontWeight.bold,
             fontSize: 30,
