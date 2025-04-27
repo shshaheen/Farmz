@@ -1,3 +1,4 @@
+import 'package:farmz/Views/Screens/consumer/checkout_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,6 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final cartProviderObject = ref.read(cartProvider.notifier);
     final totalAmount = ref.read(cartProvider.notifier).calculateTotalAmount();
     return Scaffold(
-      
       body: cartData.isEmpty
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +113,9 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                   width: 100,
                                   child: Image.network(cartItem.image),
                                 ),
-                                SizedBox(width: 4,),
+                                SizedBox(
+                                  width: 4,
+                                ),
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment:
@@ -137,7 +139,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                         ),
                                       ),
                                       Text(
-                                        "\$${cartItem.productPrice.toStringAsFixed(2)}",
+                                        "${cartItem.productPrice.toStringAsFixed(2)} /-",
                                         style: GoogleFonts.lato(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -150,15 +152,16 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                             height: 40,
                                             width: 120,
                                             decoration: BoxDecoration(
-                                                color: Theme.of(context).colorScheme.primary),
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary),
                                             child: Row(
                                               children: [
                                                 IconButton(
                                                     onPressed: () {
                                                       cartProviderObject
                                                           .decrementCartItem(
-                                                              cartItem
-                                                                  .id);
+                                                              cartItem.id);
                                                     },
                                                     icon: Icon(
                                                       CupertinoIcons.minus,
@@ -174,8 +177,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                                     onPressed: () {
                                                       cartProviderObject
                                                           .incrementCartItem(
-                                                              cartItem
-                                                                  .id);
+                                                              cartItem.id);
                                                     },
                                                     icon: Icon(
                                                       CupertinoIcons.plus,
@@ -188,8 +190,8 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                       ),
                                       IconButton(
                                           onPressed: () {
-                                            cartProviderObject.removeCartItem(
-                                                cartItem.id);
+                                            cartProviderObject
+                                                .removeCartItem(cartItem.id);
                                           },
                                           icon: Icon(
                                             CupertinoIcons.delete,
@@ -238,7 +240,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             Align(
               alignment: Alignment(-0.19, -0.31),
               child: Text(
-                "\$${totalAmount.toStringAsFixed(2)}",
+                "${totalAmount.toStringAsFixed(2)} /- ",
                 style: GoogleFonts.roboto(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -259,27 +261,37 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   height: 61,
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
-                    color: totalAmount == 0.0 ? Colors.grey : Theme.of(context).colorScheme.primary,
+                    color: totalAmount == 0.0
+                        ? Colors.grey
+                        : Theme.of(context).colorScheme.primary,
                   ),
                   child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Checkout",
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckoutScreen()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Checkout",
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.white,
-                          ),
-                        ],
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

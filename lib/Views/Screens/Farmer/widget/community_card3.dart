@@ -5,7 +5,7 @@ class CommunityCard3 extends StatelessWidget {
   final Color primaryColor = const Color(0xFF4C9A2A);
   final Color tagColor = Color(0xFFF9EEC1);
   void _joinCommunity() async {
-  final Uri url = Uri.parse('https://chat.whatsapp.com/GUJ5Mj7O6JH1giAipSnfao');
+  final Uri url = Uri.parse('https://chat.whatsapp.com/CehDyFosmxc2sg1zOvH93j');
 
   if (await canLaunchUrl(url)) {
     await launchUrl(
@@ -13,7 +13,7 @@ class CommunityCard3 extends StatelessWidget {
       mode: LaunchMode.externalApplication, // Required to open WhatsApp or browser
     );
   } else {
-    print('Could not launch $url');
+    // print('Could not launch $url');
     // Optional: show a snackbar or alert
   }
 }
