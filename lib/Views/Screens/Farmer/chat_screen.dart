@@ -58,7 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
           padding: EdgeInsets.all(8),
           child: ClipOval(
             child: Image.asset(
-              'assets/images/niya.png',
+              'assets/images/GrowBot1.jpg',
               width: 40,
               height: 40,
               fit: BoxFit.cover,
@@ -66,7 +66,8 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
         title: Text(
-          "AGRI",
+
+          "GrowBot",
           style: GoogleFonts.ptSerifCaption(
             fontWeight: FontWeight.bold,
             fontSize: 30,
