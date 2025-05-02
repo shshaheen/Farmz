@@ -271,7 +271,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CheckoutScreen()));
+                                builder: (context) => CheckoutScreen(amount: totalAmount,)));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

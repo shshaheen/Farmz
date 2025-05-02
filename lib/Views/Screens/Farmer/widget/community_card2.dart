@@ -15,7 +15,7 @@ class CommunityCard2 extends StatelessWidget {
       mode: LaunchMode.externalApplication, // Required to open WhatsApp or browser
     );
   } else {
-    print('Could not launch $url');
+    // print('Could not launch $url');
     // Optional: show a snackbar or alert
   }
 }

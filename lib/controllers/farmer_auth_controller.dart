@@ -69,7 +69,7 @@ class FarmerAuthController {
               "application/json; charset=UTF-8", // specify the content type as Json
         }, // Set the Headers for the request body
       );
-      print(response.body);
+      // print(response.body);
       // Handle the response using the manage_http_response
       manageHttpResponse(
           response: response,

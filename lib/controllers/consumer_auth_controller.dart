@@ -72,9 +72,10 @@ class ConsumerAuthController {
           "Content-Type": "application/json; charset=UTF-8",
         },
       );
-
+  
       manageHttpResponse(
         response: response,
+        
         context: context,
         onSuccess: () async {
           SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -89,6 +90,7 @@ class ConsumerAuthController {
                 .setUser(userJson);
             await preferences.setString('consumer', userJson);
           } else {
+            
             showSnackBar(context, 'Login failed: User data missing.');
             return;
           }
@@ -112,13 +114,16 @@ class ConsumerAuthController {
       await preferences.remove('consumer');
 
       providerContainer.read(consumerProvider.notifier).signOut();
-
+      
       Navigator.pushAndRemoveUntil(
+        
           context,
           MaterialPageRoute(builder: (context) => WelcomePage()),
           (route) => false);
+          
       showSnackBar(context, 'Signed out successfully.');
     } catch (e) {
+      
       showSnackBar(context, 'Error Signing out.');
     }
   }

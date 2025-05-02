@@ -58,9 +58,9 @@ class ProductController {
       } else {
         showSnackBar(context, 'Select Image');
       }
-    } catch (e, stacktrace) {
-      print('❌ Error in uploadProduct: $e');
-      print('📍 Stacktrace: $stacktrace');
+    } catch (e) {
+      // print('❌ Error in uploadProduct: $e');
+      // print('📍 Stacktrace: $stacktrace');
       showSnackBar(context, 'Error uploading product. Check logs.');
     }
   }

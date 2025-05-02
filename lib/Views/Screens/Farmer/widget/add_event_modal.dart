@@ -4,13 +4,13 @@ class AddEventModal extends StatefulWidget {
   final DateTime selectedDate;
   final Function(String, String) onSave;
 
-  AddEventModal({required this.selectedDate, required this.onSave});
+  const AddEventModal({super.key, required this.selectedDate, required this.onSave});
 
   @override
-  _AddEventModalState createState() => _AddEventModalState();
+  State<AddEventModal> createState() => AddEventModalState();
 }
 
-class _AddEventModalState extends State<AddEventModal> {
+class AddEventModalState extends State<AddEventModal> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
 

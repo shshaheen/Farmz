@@ -6,11 +6,12 @@ import 'dart:convert';
 import 'package:farmz/Views/Screens/Farmer/widget/add_event_modal.dart';
 
 class FarmTasks extends StatefulWidget {
+  const FarmTasks({super.key});
   @override
-  _FarmTasksState createState() => _FarmTasksState();
+  State<FarmTasks> createState() => FarmTasksState();
 }
 
-class _FarmTasksState extends State<FarmTasks> {
+class FarmTasksState extends State<FarmTasks> {
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
   Map<DateTime, List<String>> _events = {};

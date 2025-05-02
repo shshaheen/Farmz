@@ -17,7 +17,7 @@ class _MarketDemandState extends State<MarketDemand> {
       
       final res = await http.get(
         Uri.parse(
-            "https://api.openweathermap.org/data/2.5/forecast?q=Kurnool&APPID=$openWeatherAPIKey"),
+            "https://api.openweathermap.org/data/2.5/forecast?q=kadapa&APPID=$openWeatherAPIKey"),
       );
 
       if (res.statusCode != 200) {
@@ -192,7 +192,7 @@ Future<List<dynamic>> getMarketDemandData() async {
                                       trailing: Text("₹$price /kg",
                                           style: const TextStyle(fontWeight: FontWeight.bold)),
                                     );
-                                  }).toList(),
+                                  }),
                                 ],
                               ),
                             ),
